@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function  Home ({ posts }: Props) {
-  return(
+  return (
     <div className="max-w-7xl mx-auto">
       <Head>
         <title>Medium Blog</title>
@@ -39,11 +39,26 @@ export default function  Home ({ posts }: Props) {
         />
       </div>
       {/* Post */}
-      <div>
-        {posts.map(post =>(
-          <Link key={post._id} href={`/posts/${post.slug.current}`}>
-            <div>
-              <img src={urlFor(post.mainImage).url()!} alt="" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 p-2 md:p-6 ">
+        {posts.map((post) => (
+          <Link key={post._id} href={`/post/${post.slug.current}`}>
+            <div className='border rounded-xl shadow-lg group cursor-pointer'>
+              <img
+                className="w-full object-cover group-hover:scale-105 transition-transform duration-200 ease-in-out overflow-hidden"
+                src={urlFor(post.mainImage).url()!}
+                alt=""
+              />
+              <div className="flex justify-between p-5 bg-white">
+                <div>
+                  <p className='text-lg font-bold'>{post.title}</p>
+                  <p className='text-sm'>{post.description}</p>
+                </div>
+                <img
+                  className="h-12 w-12 rounded-full"
+                  src={urlFor(post.author.image).url()!}
+                  alt=""
+                />
+              </div>
             </div>
           </Link>
         ))}
