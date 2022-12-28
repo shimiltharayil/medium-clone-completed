@@ -157,13 +157,14 @@ function Post({ post }: Props) {
       <div className="flex flex-col p-10 my-10 max-w-2xl mx-auto shadow-yellow-500 shadow space-y-2 ">
         <h3 className="text-4xl ">Comments</h3>
         <hr className="pb-2" />
-        {post.comment.map((comment) => (
+        {/* {post.comment.map((comment) => (
           <div key={comment._id}>
             <p>
               <span className="text-yellow-500">{comment.name}</span>:{comment.comment}
             </p>
           </div>
-        ))}
+        ))
+        } */}
       </div>
     </main>
   );
@@ -178,7 +179,7 @@ export const getStaticPaths = async () => {
             current
         }
     }`;
-  const posts = await sanityClient.fetch(query);
+  const posts:[] = await sanityClient.fetch(query);
   const paths = posts.map((post: Post) => ({
     params: {
       slug: post.slug.current,
